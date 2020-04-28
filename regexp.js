@@ -39,3 +39,11 @@ const regexp = {
   isNozeroNumber: /^\+?[1-9]\d*$/, // 大于零的正整数
   float: /^\d+(\.?|(\.\d+)?)$/, // 匹配正整数或者小数 或者0.这个特殊值
 };
+const ncname = `[a-zA-Z_][\\-\\.0-9_a-zA-Z]*`;
+const qnameCapture = `((?:${ncname}\\:)?${ncname})`;
+const startTagOpen = new RegExp(`^<${qnameCapture}`); // 标签开头的正则 捕获的内容是
+标签名
+const endTag = new RegExp(`^<\\/${qnameCapture}[^>]*>`); // 匹配标签结尾的 </div>
+const attribute = /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|
+([^\s"'=<>`]+)))?/; // 匹配属性的
+const startTagClose = /^\s*(\/?)>/; // 匹配标签结束的 >
